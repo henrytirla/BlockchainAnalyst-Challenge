@@ -1,0 +1,22 @@
+depends http
+depends output
+depends json
+
+val url = "https://api.coingecko.com/api/v3/simple/price?ids=bitcoin&vs_currencies=usd"
+
+val response = http::get(url)
+
+val jsonData = response::data
+
+//output::println("JSON Data:", jsonData)
+
+val bitcoinPrice = jsonData::get("bitcoin.usd")
+//i
+output::println("Bitcoin Price:", bitcoinPrice)
+
+//i
+
+val bitcoinPriceEUR = bitcoinPrice * 0.85 // Assuming 1 USD = 0.85 Euros
+output::println("Bitcoin Price (EUR):", bitcoinPriceEUR)
+
+

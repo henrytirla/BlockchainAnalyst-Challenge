@@ -1,0 +1,20 @@
+depends http
+depends output
+depends json
+val url = "I am a fake api"
+
+#skip_on_error
+
+
+val response = http::get(url)
+
+val jsonData = response::data
+
+val bitcoinPrice = jsonData::get("bitcoin.usd")
+output::println("Bitcoin Price:", bitcoinPrice)
+
+val bitcoinPriceEUR = bitcoinPrice * 0.85 // Assuming 1 USD = 0.85 Euros
+output::println("Bitcoin Price (EUR):", bitcoinPriceEUR)
+
+val skipWorks = "Previous errors ignored"
+output::println("SkipOnError Works:", skipWorks)
